@@ -1,17 +1,23 @@
 public class Main {
     public static void main(String[] args) {
-        int year = 2024;
+        int year = 2800;
         int phone = 0;
-        int deliveryDistanse = 65;
-        int days = 2;
-        int relize = 2014;
+        int relize = 2024;
         leapYear(year);
         phoneVersion(relize, phone);
-        Delivery(deliveryDistanse, days);
+
+        int deliveryDistanse = 65;
+        int days = Delivery(deliveryDistanse);
+        if (days == -1){
+            System.out.println("Доставки нет");
+        } else {
+            System.out.println("Доставка займет "+days+" дня");
+        }
+
     }
     public static void leapYear(int year){
 
-        if (((year % 4 == 0) && (year % 100 != 0)) || (year % 1000 == 400)){
+        if (((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0)){
             System.out.println(year+" год — високосный год");
         } else {
             System.out.println(year+" год — невисокосный год");
@@ -30,15 +36,16 @@ public class Main {
             System.out.println("ошибка");
         }
     }
-    public static void Delivery(int deliveryDistanse, int days) {
+    public static int Delivery(int deliveryDistanse) {
         if (deliveryDistanse < 20) {
-            System.out.println("Потребуется дней: " + days);
-        } else if ((20 < deliveryDistanse) && (deliveryDistanse < 60)) {
-            System.out.println("Потребуется дней: " + (days + 1));
-        } else if ((60 < deliveryDistanse) && (deliveryDistanse < 100)) {
-            System.out.println("Потребуется дней: " + (days + 2));
+            return 2;
+        } else if ((20 <= deliveryDistanse) && (deliveryDistanse <= 60)) {
+            return 3;
+        } else if ((60 <= deliveryDistanse) && (deliveryDistanse <= 100)) {
+            return 4;
         } else {
-            System.out.println("Доставки нет");
+            return -1;
         }
+
     }
 }
